@@ -1,6 +1,5 @@
 import AddTask from "./components/AddTask"
 import ListTask from "./components/ListTask"
-import RemoveTask from "./components/RemoveTask"
 
 const App = () => {
 
@@ -8,7 +7,6 @@ const App = () => {
 		<>
 			<AddTask />
 			<ListTask />
-			<RemoveTask />
 		</>
 	)
 }

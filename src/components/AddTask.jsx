@@ -37,10 +37,12 @@ const AddTask = () => {
                     <label htmlFor='description'>Description</label>
                     <input type='text' value={description} onChange={handleDescription} />
                 </div>
+
                 <div>
                     <label htmlFor='isDone'>is done</label>
                     <input type='checkbox' onChange={handleIsDone} />
                 </div>
+
                 <div>
                     <input type='submit' value='add'/>
                 </div>
