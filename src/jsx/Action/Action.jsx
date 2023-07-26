@@ -1,0 +1,18 @@
+import { ADD_TASK } from '../Constant/ActionType'
+import { REMOVE_TASK } from '../Constant/ActionType'
+
+
+// EVERY FUNCTION, WRITE HERE ! (add, remove, edit) 
+export const addTask = (newTask) => {
+    return {
+        type: ADD_TASK,
+        payload: newTask
+    }
+}
+
+export const removeTask = (taskId) => {
+    return {
+        type: REMOVE_TASK,
+        payload: taskId
+    }
+}
