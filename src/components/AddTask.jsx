@@ -1,6 +1,6 @@
-import { useState } from "react"
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addTask } from "../JSX/Action/Action"
+import { addTask } from '../JSX/Action/Action'
 
 const AddTask = () => {
     const [description, setDescription] = useState('')
@@ -24,9 +24,9 @@ const AddTask = () => {
 
     const handleIsDone = (e) => {
         if (e.target.checked) {
-            setIsDone('finished')
+            setIsDone(true)
         } else {
-            setIsDone('unfinished')
+            setIsDone(false)
         }
     }
 

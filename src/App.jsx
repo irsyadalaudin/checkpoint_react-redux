@@ -1,5 +1,5 @@
-import AddTask from "./components/AddTask"
-import ListTask from "./components/ListTask"
+import AddTask from './components/AddTask'
+import ListTask from './components/ListTask'
 
 const App = () => {
 
