@@ -1,11 +1,11 @@
-import { ADD_TASK, REMOVE_ALL_TASK, REMOVE_TASK } from '../Constant/ActionType'
+import { ADD_TASK, REMOVE_ALL_TASK, REMOVE_TASK, EDIT_TASK } from '../Constant/ActionType'
 
 const initialState = {
-    tasks: [
+    list: [
         {
             id: 1,
             description: 'my activities',
-            isDone: 'unFinished'
+            isDone: true
         }
     ]
 }
@@ -15,15 +15,19 @@ const RootReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_TASK:
             return {
-                tasks: [...state.tasks, action.payload]
+                list: [...state.list, action.payload]
             }
         case REMOVE_TASK:
             return {
-                tasks: state.tasks.filter(task => task.id !== action.payload)
+                list: state.list.filter(task => task.id !== action.payload)
             }
         case REMOVE_ALL_TASK:
             return {
-                ...state, tasks: []
+                ...state, list: []
+            }
+        case EDIT_TASK:
+            return {
+                ...state, list: state.list.map(task => task.id === action.payload.id ? action.payload : task)
             }
         default:
             return state

@@ -14,8 +14,11 @@ const AddTask = () => {
             description,
             isDone
         }
-        console.log(newDescription)
+        setDescription('')
+        setIsDone(false)
+
         dispatch(addTask(newDescription))
+        console.log(newDescription)
     }
 
     const handleDescription = (e) => {

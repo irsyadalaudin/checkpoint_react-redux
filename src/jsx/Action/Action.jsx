@@ -1,4 +1,4 @@
-import { ADD_TASK, REMOVE_ALL_TASK, REMOVE_TASK } from '../Constant/ActionType'
+import { ADD_TASK, REMOVE_ALL_TASK, REMOVE_TASK, EDIT_TASK } from '../Constant/ActionType'
 
 // EVERY FUNCTION, WRITE HERE ! (add, remove, edit) 
 export const addTask = (newTask, isDone) => {
@@ -20,5 +20,12 @@ export const removeAllTask = (taskId) => {
     return {
         type: REMOVE_ALL_TASK,
         payload: taskId
+    }
+}
+
+export const editTask = (task) => {
+    return {
+        type: EDIT_TASK,
+        payload: task
     }
 }
