@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 const App = () => {
 
 	return (
-		<div className='bg-secondary bg-gradient rounded-4 my-5' style={{width: '1000px'}}>
+		<div className='bg-success bg-gradient rounded-4 my-5' style={{width: '1000px'}}>
 			<AddTask />
 			<ListTask />
 		</div>

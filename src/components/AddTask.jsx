@@ -42,22 +42,22 @@ const AddTask = () => {
     }
 
     return (
-        <div className='input-group d-flex justify-content-center pt-4 px-5'>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor='description'>Description</label>
-                    <input type='text' value={description} onChange={handleDescription} />
-                </div>
-
-                <div>
-                    <label htmlFor='isDone'>is done</label>
-                    <input type='checkbox' onChange={handleIsDone} />
-                </div>
-
-                <div>
-                    <input type='submit' value='add'/>
-                </div>
+        <div className='d-flex justify-content-center sticky-top' style={{top: '0'}}>
+            <div className='bg-success-subtle w-75 input-group d-flex justify-content-center pt-4'>
+                <form className='form-label' onSubmit={handleSubmit}>
+                    <div>
+                        <label className='form-label' htmlFor='description'>Description</label>
+                        <input className='form-control' type='text' value={description} onChange={handleDescription} />
+                    </div>
+                    <div>
+                        <label className='form-label' htmlFor='isDone'>is done</label>
+                        <input className='form-check-input bg-success' type='checkbox' onChange={handleIsDone} />
+                    </div>
+                    <div>
+                        <button className='btn btn-success'type='submit'>add</button>
+                    </div>
             </form>
+        </div>
         </div>
     )
 }
