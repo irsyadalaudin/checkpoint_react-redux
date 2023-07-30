@@ -1,14 +1,22 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addTask } from '../JSX/Action/Action'
 
 const AddTask = () => {
     const [description, setDescription] = useState('')
     const [isDone, setIsDone] = useState(false)
     const dispatch = useDispatch()
+    const tasks = useSelector(state => state.list)
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        console.log(tasks);
+
+        if (tasks.some(task => task.description === description)) {
+            alert('Task already exist !')
+            return
+        }
+
         const newDescription = {
             id: Date.now(),
             description,
@@ -34,7 +42,7 @@ const AddTask = () => {
     }
 
     return (
-        <>
+        <div className='d-flex justify-content-center'>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor='description'>Description</label>
@@ -50,7 +58,7 @@ const AddTask = () => {
                     <input type='submit' value='add'/>
                 </div>
             </form>
-        </>
+        </div>
     )
 }
 

@@ -1,8 +1,7 @@
-import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { removeAllTask, removeTask, editTask } from '../JSX/Action/Action'
 import { useState } from 'react'
-
+import Task from './Task'
 
 const ListTask = () => {
     const taskList = useSelector(state => state.list)
@@ -57,8 +56,7 @@ const ListTask = () => {
             {!isFiltered 
             ? taskList.map((task) => (
                 <div key={task.id}>
-                    <h1>{task.description}</h1>
-                    <p>{task.isDone ? 'finished': 'unfinished'}</p>
+                    <Task key={task} {...task} />
                     <button onClick={() => handleRemove(task.id)}>Delete</button>
                     <button onClick={() => handleEdit(task)}>edit</button>
 
@@ -76,8 +74,7 @@ const ListTask = () => {
             )) 
             : task.map((task) => (
                 <div key={task.id}>
-                    <h1>{task.description}</h1>
-                    <p>{task.isDone ? 'finished': 'unfinished'}</p>
+                    <Task key={task} {...task} />
                     <button onClick={() => handleRemove(task.id)}>Delete</button>
                     <button onClick={() => handleEdit(task)}>edit</button>
 
@@ -101,3 +98,14 @@ const ListTask = () => {
 }
 
 export default ListTask
+
+
+
+/*
+<Task key={task} {...task} />
+const task = {
+    id: 1,
+    description: "Mengerjakan tugas",
+    isDone: false,
+};
+*/
