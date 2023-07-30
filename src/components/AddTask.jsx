@@ -42,7 +42,7 @@ const AddTask = () => {
     }
 
     return (
-        <div className='d-flex justify-content-center'>
+        <div className='input-group d-flex justify-content-center pt-4 px-5'>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor='description'>Description</label>

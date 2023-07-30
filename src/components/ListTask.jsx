@@ -37,6 +37,13 @@ const ListTask = () => {
 
     const handleSubmitEdit = (e) => {
         e.preventDefault()
+
+    const uniqueDescripion = taskList.every((task) => task.id === editingTask.id || task.description !== editingDescription)
+        if (!uniqueDescripion) {
+            alert('Task already exist!')
+            return
+    }
+
         dispatch(editTask({
             ...editingTask,
             description: editingDescription,
@@ -47,53 +54,55 @@ const ListTask = () => {
 
 // array has the values that needs to be filtered 
     return (
-        <>
-            <button onClick={() => handleFilter(true)}>finished</button>
-            <button onClick={() => handleFilter(false)}>unfinished</button>
-            <button onClick={() => handleFilter(null)}>show all</button>
+        <div className='d-flex flex-wrap justify-content-center'>
+            <div>
+                <button onClick={() => handleFilter(true)}>finished</button>
+                <button onClick={() => handleFilter(false)}>unfinished</button>
+                <button onClick={() => handleFilter(null)}>show all</button>
 
-            {/* conditional rendering */}
-            {!isFiltered 
-            ? taskList.map((task) => (
-                <div key={task.id}>
-                    <Task key={task} {...task} />
-                    <button onClick={() => handleRemove(task.id)}>Delete</button>
-                    <button onClick={() => handleEdit(task)}>edit</button>
+                {/* conditional rendering */}
+                {!isFiltered 
+                ? taskList.map((task) => (
+                    <div key={task.id}>
+                        <Task key={task} {...task} />
+                        <button onClick={() => handleRemove(task.id)}>Delete</button>
+                        <button onClick={() => handleEdit(task)}>edit</button>
 
-                    {editingTask && editingTask.id === task.id && (
-                        <form onSubmit={handleSubmitEdit}>
-                            <input type='text' value={editingDescription} onChange={e => setEditingDescription(e.target.value)} />
-                            <select value={editingIsDone} onChange={e => setEditingIsDone(e.target.value === 'true')}>
-                                <option value='true'>finished</option>
-                                <option value='false'>unfinished</option>
-                            </select>
-                            <button type='submit'>save</button>
-                        </form>
-                    )}
-                </div>
-            )) 
-            : task.map((task) => (
-                <div key={task.id}>
-                    <Task key={task} {...task} />
-                    <button onClick={() => handleRemove(task.id)}>Delete</button>
-                    <button onClick={() => handleEdit(task)}>edit</button>
+                        {editingTask && editingTask.id === task.id && (
+                            <form onSubmit={handleSubmitEdit}>
+                                <input type='text' value={editingDescription} onChange={e => setEditingDescription(e.target.value)} />
+                                <select value={editingIsDone} onChange={e => setEditingIsDone(e.target.value === 'true')}>
+                                    <option value='true'>finished</option>
+                                    <option value='false'>unfinished</option>
+                                </select>
+                                <button type='submit'>save</button>
+                            </form>
+                        )}
+                    </div>
+                )) 
+                : task.map((task) => (
+                    <div key={task.id}>
+                        <Task key={task} {...task} />
+                        <button onClick={() => handleRemove(task.id)}>Delete</button>
+                        <button onClick={() => handleEdit(task)}>edit</button>
 
-                    {editingTask && editingTask.id === task.id && (
-                        <form onSubmit={handleSubmitEdit}>
-                            <input type='text' value={editingDescription} onChange={e => setEditingDescription(e.target.value)} />
-                            <select value={editingIsDone} onChange={e => setEditingIsDone(e.target.value === 'true')}>
-                                <option value='true'>finished</option>
-                                <option value='false'>unfinished</option>
-                            </select>
-                            <button type='submit'>save</button>
-                        </form>
-                    )}
-                </div>
-            ))}
+                        {editingTask && editingTask.id === task.id && (
+                            <form onSubmit={handleSubmitEdit}>
+                                <input type='text' value={editingDescription} onChange={e => setEditingDescription(e.target.value)} />
+                                <select value={editingIsDone} onChange={e => setEditingIsDone(e.target.value === 'true')}>
+                                    <option value='true'>finished</option>
+                                    <option value='false'>unfinished</option>
+                                </select>
+                                <button type='submit'>save</button>
+                            </form>
+                        )}
+                    </div>
+                ))}
 
-            <br />
-            <button onClick={handleRemoveAll}>Delete All</button>
-        </>
+                <br />
+                <button onClick={handleRemoveAll}>Delete All</button>
+            </div>
+        </div>
     )
 }
 
