@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addTask } from '../JSX/Action/Action'
+import { addTask } from '../store/Action/Action.js'
 
 const AddTask = () => {
     const [description, setDescription] = useState('')

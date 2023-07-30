@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { removeAllTask, removeTask, editTask } from '../JSX/Action/Action'
+import { removeAllTask, removeTask, editTask } from '../store/Action/Action.js'
 import { useState } from 'react'
 import Task from './Task'
 
