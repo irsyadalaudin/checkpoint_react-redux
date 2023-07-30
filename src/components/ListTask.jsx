@@ -1,9 +1,12 @@
+// IMPORTING REQUIRED MODULES
 import { useSelector, useDispatch } from 'react-redux'
 import { removeAllTask, removeTask, editTask } from '../store/Action/Action.js'
 import { useState } from 'react'
 import Task from './Task'
 
+// DEFINING THE LISTTASK COMPONENT
 const ListTask = () => {
+    // STATE MANAGEMENT USING HOOKS
     const taskList = useSelector(state => state.list)
     const dispatch = useDispatch()
     const [isFiltered, setIsFiltered] = useState(null)
@@ -12,47 +15,54 @@ const ListTask = () => {
     const [editingDescription, setEditingDescription] = useState('')
     const [editingIsDone, setEditingIsDone] = useState(false)
 
+    // HANDLING TASK REMOVAL
     const handleRemove = (taskId) => {
-        dispatch(removeTask(taskId))
+        dispatch(removeTask(taskId))        // Dispatching the 'removeTask' action with the task ID to remove the task from the Redux store.
     }
 
-    const handleRemoveAll = (taskId) => {
+    // HANDLING REMOVING ALL TASKS
+    const handleRemoveAll = (taskId) => {   // Dispatching the 'removeAllTask' action to remove all tasks from the Redux store.
         dispatch(removeAllTask(taskId))
     }
 
+    // HANDLING TASK FILTERING
     const handleFilter = (boolean) => {
-        if (boolean === null) {
+        if (boolean === null) {             // If the filter is set to null, indicating 'show all' option, set 'isFiltered' state to false.
             setIsFiltered(false)
-        } else {
+        } else {                            // If a specific filter option (true or false) is selected, filter tasks based on the completion status and update the 'isFiltered' state to true.
             setTask(taskList.filter(task => task.isDone === boolean))
             setIsFiltered(true)
         }
     }
 
+    // HANDLING TASK EDITING
     const handleEdit = (task) => {
-        setEditingTask(task)
-        setEditingDescription(task.description)
-        setEditingIsDone(task.isDone)
+        setEditingTask(task)                       // Setting the 'editingTask' state with the selected task to be edited.
+        setEditingDescription(task.description)    // Setting the 'editingDescription' state with the description of the selected task to be edited.
+        setEditingIsDone(task.isDone)              // Setting the 'editingIsDone' state with the completion status of the selected task to be edited.
     }
 
+    // HANDLING EDITED TASK SUBMISSION
     const handleSubmitEdit = (e) => {
-        e.preventDefault()
+        e.preventDefault()                         // Preventing the default form submission behavior.
 
-    const uniqueDescripion = taskList.every((task) => task.id === editingTask.id || task.description !== editingDescription)
-        if (!uniqueDescripion) {
-            alert('Task already exist!')
-            return
-    }
+        // Checking if the edited description is unique among the tasks in the taskList.
+        const uniqueDescripion = taskList.every((task) => task.id === editingTask.id || task.description !== editingDescription)
+            if (!uniqueDescripion) {
+                alert('Task already exist!')       // Showing an alert if the edited description already exists in another task.
+                return
+        }
 
+        // Dispatching the 'editTask' action with the updated task information to update the task in the Redux store.
         dispatch(editTask({
             ...editingTask,
             description: editingDescription,
             isDone: editingIsDone
         }))
-        setEditingTask(null)
+        setEditingTask(null)                       // Resetting the 'editingTask' state to null after task is edited.
     }
 
-// array has the values that needs to be filtered 
+    // RENDERING THE COMPONENT
     return (
         <div className='d-flex justify-content-center'>
             <div>
