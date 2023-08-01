@@ -5,7 +5,7 @@ export const addTask = (newTask, isDone) => {
     return {
         type: ADD_TASK,
         payload: newTask,
-        isDone: isDone   //
+        isDone: isDone
     }
 }
 
