@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import RootReducer from './Reducer/RootReducer'
+import createSlice from './Reducer/RootReducer'
 
 const store = configureStore({
-    reducer: RootReducer
+    reducer: createSlice
 })
 
 

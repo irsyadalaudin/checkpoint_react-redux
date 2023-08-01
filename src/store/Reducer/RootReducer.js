@@ -1,6 +1,7 @@
-import { ADD_TASK, REMOVE_ALL_TASK, REMOVE_TASK, EDIT_TASK } from '../Constant/ActionType'
+import { createSlice } from '@reduxjs/toolkit';
+// import { ADD_TASK, REMOVE_ALL_TASK, REMOVE_TASK, EDIT_TASK } from '../Constant/ActionType';
 
-const initialState = {
+export const initialState = {
     list: [
         {
             id: 1,
@@ -10,28 +11,36 @@ const initialState = {
     ]
 }
 
-// EVERY FUNCTION, WRITE HERE ! (add, remove, edit) 
-const RootReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case ADD_TASK:
+const taskSlice = createSlice({
+    name: 'task',
+    initialState,
+    reducers: {
+        addTask: (state, action) => {
             return {
-                list: [...state.list, action.payload]
-            }
-        case REMOVE_TASK:
+                list: [...state.list, action.payload],
+            };
+        },
+        removeTask: (state, action) => {
             return {
-                list: state.list.filter(task => task.id !== action.payload)
-            }
-        case REMOVE_ALL_TASK:
+                list: state.list.filter((task) => task.id !== action.payload),
+            };
+        },
+        removeAllTask: (state) => {
             return {
-                ...state, list: []
-            }
-        case EDIT_TASK:
+                ...state,
+                list: [],
+            };
+        },
+        editTask: (state, action) => {
             return {
-                ...state, list: state.list.map(task => task.id === action.payload.id ? action.payload : task)
-            }
-        default:
-            return state
-    }
-}
+                ...state,
+                list: state.list.map((task) =>
+                task.id === action.payload.id ? action.payload : task
+                ),
+            };
+        },
+    },
+});
 
-export default RootReducer
+export const { addTask, removeTask, removeAllTask, editTask } = taskSlice.actions;
+export default taskSlice.reducer;

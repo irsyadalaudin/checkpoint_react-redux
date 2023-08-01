@@ -24,4 +24,6 @@ dist-ssr
 *.sw?
 
 # My Source Code
-ListTask2.jsx.jsx
+Store00.js
+Action.js
+RootReducer00.js

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addTask } from '../store/Action/Action.js'
+import { addTask } from '../store/Reducer/RootReducer.js'
 
 const AddTask = () => {
     const [description, setDescription] = useState('')
@@ -9,6 +9,7 @@ const AddTask = () => {
     // REDUX HOOKS
     const dispatch = useDispatch()
     const tasks = useSelector(state => state.list)
+    // console.log(addTask)
 
     // HANDLING FORM SUBMISSION
     const handleSubmit = (e) => {

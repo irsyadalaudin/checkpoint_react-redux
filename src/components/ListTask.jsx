@@ -1,6 +1,6 @@
 // IMPORTING REQUIRED MODULES
 import { useSelector, useDispatch } from 'react-redux'
-import { removeAllTask, removeTask, editTask } from '../store/Action/Action.js'
+import { removeAllTask, removeTask, editTask } from '../store/Reducer/RootReducer.js'
 import { useState } from 'react'
 import Task from './Task'
 
