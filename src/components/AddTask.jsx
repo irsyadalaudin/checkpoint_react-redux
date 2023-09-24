@@ -68,8 +68,8 @@ const AddTask = () => {
                     <div>
                         <button className='btn btn-success'type='submit'>add</button>
                     </div>
-            </form>
-        </div>
+                </form>
+            </div>
         </div>
     )
 }
